@@ -12,6 +12,8 @@ export default function Details({ navigation, route }) {
   const [anoEdit, setAnoEdit] = useState(route.params.year);
 
   const idMovie = route.params.id;
+ 
+
 
   function editTask(description, id, title, year) {
     database.collection("Movies").doc(id).update({
@@ -48,7 +50,7 @@ export default function Details({ navigation, route }) {
       <TouchableOpacity
         style={styles.buttonNewMovie}
         onPress={() => {
-          editTask(descriptionEdit, idMovie);
+          editTask(descriptionEdit, idMovie, tituloEdit, anoEdit);
         }}
       >
         <Text style={styles.iconButton}>Save</Text>
