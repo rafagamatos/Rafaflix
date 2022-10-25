@@ -3,12 +3,12 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#303030",
   },
   label: {
     width: "90%",
     marginTop: 20,
-    fontSize: 16,
+    fontSize: 20,
     marginLeft: 20,
     color: "#F92E6A",
   },
@@ -21,8 +21,9 @@ const styles = StyleSheet.create({
     borderBottomColor: "#F92E6A",
     marginLeft: "auto",
     marginRight: "auto",
+    backgroundColor: 'white',
   },
-  buttonNewMovie: {
+  buttonSave: {
     width: 60,
     height: 60,
     position: "absolute",
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontSize: 16,
     fontWeight: "bold",
+    position: 'relative'
   },
 });
 

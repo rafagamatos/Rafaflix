@@ -4,6 +4,7 @@ import database from "../../config/firebase";
 import { FontAwesome } from "@expo/vector-icons";
 import styles from "./style";
 
+
 export default function Movie({ navigation }) {
   const [movie, setMovie] = useState([]);
 
@@ -36,7 +37,8 @@ export default function Movie({ navigation }) {
                     id: item.id,
                     description: item.description,
                     title: item.title,
-                    year: item.year,
+                    date: item.date,
+                    director: item.director,                   
                   })
                 }
               >
@@ -54,10 +56,19 @@ export default function Movie({ navigation }) {
                   color="#F92e6A"
                 ></FontAwesome>
               </TouchableOpacity>
+             
             </View>
           );
         }}
       />
+              <TouchableOpacity
+                style={styles.buttonNewMovie}
+                onPress={() => {
+                 navigation.navigate('New')
+                }}
+              >
+                <Text style={styles.iconButton}>+</Text>
+              </TouchableOpacity>
     </View>
   );
 }

@@ -5,14 +5,16 @@ import styles from "./style";
 
 export default function New({ navigation }, props) {
   const [description, setDescription] = useState(null);
-  const [titulo, setTitulo] = useState(null);
-  const [ano, setAno] = useState(null);
+  const [title, setTitle] = useState(null);  
+  const [date, setDate] = useState(null);
+  const [director, setDirector] = useState(null);
 
   function addMovie() {
     database.collection("Movies").add({
       description: description,
-      title: titulo,
-      year: ano,
+      title: title,      
+      date: date,
+      director: director,
     });
     navigation.navigate("Movie");
   }
@@ -21,24 +23,27 @@ export default function New({ navigation }, props) {
     <View style={styles.container}>
       <Text style={styles.label}>Título: </Text>
       <TextInput
-        style={styles.input}
-        placeholder="A casa de cera"
-        onChangeText={setTitulo}
-        value={titulo}
-      />
-      <Text style={styles.label}>Ano: </Text>
+        style={styles.input}       
+        onChangeText={setTitle}
+        value={title}
+      />     
+      <Text style={styles.label}>Sobre: </Text>
       <TextInput
-        style={styles.input}
-        placeholder="Ex: 2010"
-        onChangeText={setAno}
-        value={ano}
-      />
-      <Text style={styles.label}>Descrição: </Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Ex: O filme conta a historia de uma garota que dançava funk"
+        style={styles.input}        
         onChangeText={setDescription}
         value={description}
+      />
+      <Text style={styles.label}>Lançamento: </Text>
+      <TextInput
+        style={styles.input}        
+        onChangeText={setDate}
+        value={date}
+      />
+      <Text style={styles.label}>Diretor: </Text>
+      <TextInput
+        style={styles.input}        
+        onChangeText={setDirector}
+        value={director}
       />
 
       <TouchableOpacity
