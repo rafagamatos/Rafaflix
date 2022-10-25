@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import { View, Text, Image, KeyboardAvoidingView } from "react-native";
+import { View, Text, Image, KeyboardAvoidingView, Button, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import TitlePage from  '../../components/TitlePage'
 import { TextInput } from "react-native";
-import firebase from '../../config/firebase'
+import database from "../../config/firebase";
 
 
 export default function Login({ navigation }) {
@@ -12,7 +12,19 @@ export default function Login({ navigation }) {
   const [loginError, setLoginError] = useState('')
 
   const login = () => {
-
+    database.auth().createUserWithEmailAndPassword(email, senha)
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    console.log(user)
+   // navigation.navigate('Home' , {idUser: user.uid})
+  })
+  .catch((error) => {
+    setLoginError(true)
+    let errorCode = error.code;
+    let errorMessage = error.message;
+    // ..
+  });
   }
 
   useEffect(() => {
@@ -20,9 +32,9 @@ export default function Login({ navigation }) {
   },[])
 
   return (
-   <KeyboardAvoidingView
-   behavior={Platform.OS === "ios" ? "padding" : "height"}
+   <KeyboardAvoidingView  
    style={styles.container}>
+
     <View style={styles.logo}>
       <Image source={require('../../../assets/logo.png')} style={styles.stretch}/>
       <TitlePage title={"Rafaflix"} />
@@ -44,13 +56,43 @@ export default function Login({ navigation }) {
           onChangeText={(text) => setSenha(text)}
           style={styles.input}
         />
-        {loginError === true ? 
-        <View>Senha ou Email inválidos ne amore</View>
+        {loginError === true 
+        ? 
+        <View>
+          Senha ou Email inválidos ne amore
+        </View>
         : 
-        <View></View>
-        }
-        <View/>
+        <View />
+        }        
+       
       </View>
+      {email === '' || senha === ''
+        ?
+        <TouchableOpacity 
+         disabled={true}
+         style={styles.button}
+        >
+           <Text>Entrar</Text>
+        </TouchableOpacity>
+        :
+        <TouchableOpacity      
+        style={styles.button}
+        onPress={()=> {
+          navigation.navigate('Home')
+        }}
+       >
+        <Text>Entrar</Text>
+       </TouchableOpacity>
+        }  
+        <Text style={{fontSize: 15, color: '#b8b8b8'}}>Não possui cadastro?  
+          <Text 
+          onPress={() => {
+            navigation.navigate('NovoUsuario')
+          }} 
+          style={{fontSize: 15, color: '#0d99ff', marginLeft: 10}}> 
+            Cadastre agora.       
+          </Text>
+        </Text>
    </KeyboardAvoidingView>
       
   );

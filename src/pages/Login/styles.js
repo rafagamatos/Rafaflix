@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500',
     color: '#eb1e32',
-    marginBottom: 20,
+    marginBottom: 10,
     marginTop: 20,
     letterSpacing: 2,
   },
@@ -30,6 +30,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     width: 280,
     height: 40,
+    borderRadius: 10
+  }, 
+  button: {
+    width: 100,
+    height: 40,
+    backgroundColor: 'red',
+    margin: 20,
+    marginTop: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
   }
 
 });
